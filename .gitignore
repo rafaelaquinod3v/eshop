@@ -5,3 +5,17 @@
 node_modules
 
 .angular
+# Visual Studio Code
+.vscode/
+
+# IntelliJ IDEA
+.idea/
+*.iml
+out/
+gen/
+
+# Eclipse
+.settings/
+.project
+.classpath
+bin/
