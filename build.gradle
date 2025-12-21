@@ -30,6 +30,7 @@ dependencies {
 }
 */
 /* plugins {
+    id "dev.nx.gradle.project-graph" version "0.1.10"
     id 'org.springframework.boot' version '3.4.0' // Usa la versión más reciente de 2025
     id 'io.spring.dependency-management' version '1.1.7'
     id 'java'
@@ -40,3 +41,15 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
  */
+
+
+plugins {
+    // Busca el bloque de plugins existente y añade esta línea:
+    id("dev.nx.gradle.project-graph") version "0.1.10" 
+}
+
+allprojects {
+    apply {
+        plugin("dev.nx.gradle.project-graph")
+    }
+}

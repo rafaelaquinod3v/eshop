@@ -14,7 +14,12 @@ include 'shared'
 include 'api'
 include 'services:webservice'
 */
-
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        mavenCentral()
+    }
+}
 rootProject.name = 'eshop-monorepo'
 include 'eshop-api'
 project(':eshop-api').projectDir = file('apps/eshop-api')
