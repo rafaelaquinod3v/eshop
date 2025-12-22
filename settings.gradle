@@ -23,3 +23,5 @@ pluginManagement {
 rootProject.name = 'eshop-monorepo'
 include 'eshop-api'
 project(':eshop-api').projectDir = file('apps/eshop-api')
+include 'eshop-application-core'
+project(':eshop-application-core').projectDir = file('apps/eshop-application-core')
