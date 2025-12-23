@@ -10,6 +10,6 @@ import sv.com.eshop.core.entities.Order;
 public class HomeController {
     @GetMapping("/hello")
     public String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
-      return String.format("Hello %s! %d", name, new Order(12).id);
+      return String.format("Hello %s! %s", name, new Order().getId().id().toString());
     }
 }

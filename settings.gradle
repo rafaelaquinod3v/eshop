@@ -14,9 +14,20 @@ include 'shared'
 include 'api'
 include 'services:webservice'
 */
-pluginManagement {
+/* pluginManagement {
     repositories {
         gradlePluginPortal()
+        mavenCentral()
+    }
+} */
+dependencyResolutionManagement {
+    // Esto obliga a que todos los subproyectos usen estos repositorios 
+    // y evita errores si un subproyecto intenta definir uno propio.
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    
+    repositories {
+        gradlePluginPortal()
+        // Maven Central es donde reside jMolecules 2025.0.0
         mavenCentral()
     }
 }
