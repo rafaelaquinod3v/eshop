@@ -1,7 +1,7 @@
 package sv.com.eshop.core.entities;
 
 import java.util.UUID;
-import sv.com.eshop.core.entities.CatalogType.CatalogTypeId;;
+import sv.com.eshop.core.entities.CatalogType.CatalogTypeId;
 import org.jmolecules.ddd.types.AggregateRoot;
 import org.jmolecules.ddd.types.Identifier;
 

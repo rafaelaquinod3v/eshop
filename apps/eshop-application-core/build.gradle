@@ -9,11 +9,18 @@ java {
 dependencies {
     implementation platform('org.jmolecules:jmolecules-bom:2025.0.0')
     api 'org.jmolecules:jmolecules-ddd'
+
+    api 'org.apache.commons:commons-lang3:3.12.0'
+
+    testImplementation platform ('org.junit:junit-bom:5.10.2')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testImplementation 'org.mockito:mockito-core:5.14.2'
+    testImplementation 'org.mockito:mockito-junit-jupiter:5.14.2'
+    testImplementation 'org.assertj:assertj-core:3.26.3'
+
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
-/* pluginManagement {
-    repositories {
-        gradlePluginPortal()
-        mavenCentral()
-    }
-} */
+test {
+    useJUnitPlatform()
+}
