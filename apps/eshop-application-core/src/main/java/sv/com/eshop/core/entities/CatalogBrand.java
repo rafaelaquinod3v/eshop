@@ -1,5 +1,6 @@
 package sv.com.eshop.core.entities;
 
+import java.util.Objects;
 import java.util.UUID;
 import sv.com.eshop.core.entities.CatalogBrand.CatalogBrandId;
 import org.jmolecules.ddd.types.AggregateRoot;
@@ -23,4 +24,16 @@ public class CatalogBrand implements AggregateRoot <CatalogBrand, CatalogBrandId
     }
     
     public static record CatalogBrandId(UUID id) implements Identifier {}
+
+    @Override
+    public boolean equals(Object o) {
+        if(this == o) return true;
+        if(!(o instanceof CatalogBrand that)) return false;
+        return Objects.equals(this.id, that.id);
+    }
+
+    @Override
+    public int hashCode(){
+        return Objects.hash(this.id);
+    }
 }
