@@ -11,7 +11,7 @@ public class CatalogTypeTest {
     @DisplayName("Should create a CatalogType with a valid ID and type")
     void shouldCreateCatalogType() {
         String expectedType = "ELECTRONICS";
-        CatalogType catalogType = new CatalogType(expectedType);
+        CatalogType catalogType = CatalogType.create(expectedType);
 
         assertThat(catalogType.getId()).isNotNull();
         assertThat(catalogType.getId().id()).isNotNull(); //Valids internal UUID
@@ -21,8 +21,8 @@ public class CatalogTypeTest {
     @Test
     @DisplayName("Each CatalogType should have a unique identifier")
     void sholdHaveUniqueIdentifier() {
-        CatalogType catalogType1 = new CatalogType("BOOKS");
-        CatalogType catalogType2 = new CatalogType("BOOKS");
+        CatalogType catalogType1 = CatalogType.create("BOOKS");
+        CatalogType catalogType2 = CatalogType.create("BOOKS");
 
         assertThat(catalogType1.getId()).isNotEqualTo(catalogType2.getId());
     }
@@ -30,6 +30,6 @@ public class CatalogTypeTest {
     @Test
     @DisplayName("CatalogType cannot be empty")
     void shouldThrowExceptionWhenTypeIsInvalid() {
-        assertThatThrownBy(() -> new CatalogType("")).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> CatalogType.create("")).isInstanceOf(IllegalArgumentException.class);
     }
 }
