@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Value Equality (DDD Principles)" tests="2" skipped="0" failures="0" errors="0" timestamp="2025-12-25T00:52:57.728Z" hostname="DESKTOP-13NSD1A" time="0.046">
-  <properties/>
-  <testcase name="Two addresses with same values should be equal" classname="sv.com.eshop.core.AddressTest$Equality" time="0.042"/>
-  <testcase name="Two Addresses with different values should not be equal" classname="sv.com.eshop.core.AddressTest$Equality" time="0.002"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
