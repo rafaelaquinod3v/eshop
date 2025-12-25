@@ -1,7 +1,7 @@
-package sv.com.eshop.core.entities;
+package sv.com.eshop.core;
 
-import sv.com.eshop.core.entities.CatalogItem.CatalogItemId;
 import sv.com.eshop.core.entities.CatalogType.CatalogTypeId;
+import sv.com.eshop.core.CatalogItem.CatalogItemId;
 import sv.com.eshop.core.entities.CatalogBrand.CatalogBrandId;
 
 import java.math.BigDecimal;

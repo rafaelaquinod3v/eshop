@@ -1,12 +1,12 @@
 package sv.com.eshop;
 
+import java.math.BigDecimal;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-//import sv.com.eshop.core.entities.Address;
-import sv.com.eshop.core.entities.CatalogItem;
-//import sv.com.eshop.core.entities.Order;
+import sv.com.eshop.core.CatalogItem;
 
 @RestController
 public class HomeController {
@@ -16,7 +16,7 @@ public class HomeController {
         "Hello %s! %s", 
         name, 
         //new Order("1234", new Address("x", "a", "surf", "state", "sv"), null)
-        new CatalogItem("Black T-Shirt", "Kirklan XL", 9.99)
+        new CatalogItem("Black T-Shirt", "Kirklan XL", BigDecimal.valueOf(9.99), null, null, null)
       );
     }
 }
