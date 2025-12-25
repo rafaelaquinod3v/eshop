@@ -53,6 +53,15 @@ public class AddressTest {
             assertThat(address1).isEqualTo(address2);
             assertThat(address1.hashCode()).isEqualTo(address2.hashCode());
         }
+
+        @Test
+        @DisplayName("Two Addresses with different values should not be equal")
+        void inequalityTest() {
+            Address address1 = new Address("12345", "Main St", "NY", "NY", "USA");
+            Address address2 = new Address("54321", "Main St", "NY", "NY", "USA");
+
+            assertThat(address1).isNotEqualTo(address2);
+        }
     }
 
     

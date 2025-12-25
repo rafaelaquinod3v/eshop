@@ -30,6 +30,6 @@ public class CatalogTypeTest {
     @Test
     @DisplayName("CatalogType cannot be empty")
     void shouldThrowExceptionWhenTypeIsInvalid() {
-        assertThatThrownBy(() -> CatalogType.create("")).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> CatalogType.create("")).isExactlyInstanceOf(IllegalArgumentException.class);
     }
 }

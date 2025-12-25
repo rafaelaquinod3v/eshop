@@ -19,3 +19,8 @@ gen/
 .project
 .classpath
 bin/
+
+# Ignora carpetas build en cualquier nivel (apps, libs, etc.)
+**/build/
+
+.gradle/
