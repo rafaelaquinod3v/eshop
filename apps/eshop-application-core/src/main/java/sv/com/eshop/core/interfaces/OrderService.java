@@ -1,4 +1,4 @@
-package sv.com.eshop.core;
+package sv.com.eshop.core.interfaces;
 
 import sv.com.eshop.core.entities.Order;
 
