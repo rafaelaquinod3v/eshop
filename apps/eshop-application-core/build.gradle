@@ -7,9 +7,11 @@ java {
 }
 
 dependencies {
-    implementation platform('org.jmolecules:jmolecules-bom:2025.0.0')
+/*     implementation platform('org.jmolecules:jmolecules-bom:2025.0.0')
     api 'org.jmolecules:jmolecules-ddd'
-    api 'org.jmolecules:jmolecules-events'
+    api 'org.jmolecules:jmolecules-events' */
+    api libs.jmolecules.ddd
+    api libs.jmolecules.events
 
     api 'org.apache.commons:commons-lang3:3.12.0'
 

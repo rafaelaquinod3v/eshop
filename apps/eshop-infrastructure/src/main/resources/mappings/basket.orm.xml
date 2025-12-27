@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings>
+ <!--    <package>sv.com.eshop.core.entities</package> -->
+
+    <!-- Mapeo del ID de la Canasta -->
+<!--      -->
+
+    <!-- Mapeo del Item de la Canasta -->
+<!--     <embeddable class="sv.com.eshop.core.entities.BasketItem">
+        <attributes>
+            <embedded name="catalogItemId">
+                <attribute-override name="id">
+                    <column name="catalog_item_id" nullable="false"/>
+                </attribute-override>
+            </embedded>
+            <basic name="unitPrice">
+                <column name="unit_price" precision="18" scale="2"/>
+            </basic>
+            <basic name="units">
+                <column name="units"/>
+            </basic>
+        </attributes>
+    </embeddable> -->
+    <embeddable class="sv.com.eshop.core.entities.Basket$BasketIdentifier">
+        <attributes>
+            <basic name="id">
+                <column name="basket_id" column-definition="UUID"/>
+            </basic>
+        </attributes>
+    </embeddable>
+    <entity class="sv.com.eshop.core.entities.Basket">
+        <table name="Baskets"/>
+        <attributes>
+            <embedded-id name="id"/>
+            <basic name="buyerId">
+                <column name="buyer_id" nullable="false"/>
+            </basic>
+<!--             <element-collection name="items">
+                <collection-table name="BasketItems">
+                    <join-column name="basket_id"/>
+                </collection-table>
+            </element-collection> -->
+        </attributes>
+    </entity>
+</entity-mappings>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings>
+<!--     <package>sv.com.eshop.core</package> -->
+    <embeddable class="sv.com.eshop.core.CatalogItem$CatalogItemId">
+        <attributes>
+            <basic name="id">
+                <column name="catalog_item_id" column-definition="UUID"/>
+            </basic>
+        </attributes>
+    </embeddable>
+</entity-mappings>

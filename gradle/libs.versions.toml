@@ -1,0 +1,10 @@
+[versions]
+jmolecules = "1.9.0"
+springDependencyManagement = "1.1.7"
+
+[libraries]
+jmolecules-ddd = { group = "org.jmolecules", name = "jmolecules-ddd", version.ref = "jmolecules" }
+jmolecules-events = { group = "org.jmolecules", name = "jmolecules-events", version.ref = "jmolecules" }
+
+[plugins]
+spring-dependency-management = { id = "io.spring.dependency-management", version.ref = "springDependencyManagement" }

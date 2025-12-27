@@ -2,6 +2,7 @@ package sv.com.eshop.core;
 
 import java.math.BigDecimal;
 import java.util.Map;
+import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 import sv.com.eshop.core.CatalogItem.CatalogItemId;
@@ -23,7 +24,7 @@ public class BasketServiceImpl implements BasketService {
             executor.submit(() -> {
                 
                 var anonymousBasket = basketRepository.getByBuyerId(anonymousId);
-                if(anonymousBasket == null) return;
+/*                 if(anonymousBasket == null) return;
 
                 var userBasket = basketRepository.getByBuyerId(username);
                 if(userBasket == null) {
@@ -35,7 +36,7 @@ public class BasketServiceImpl implements BasketService {
                     userBasket.addItem(item.getCatalogItemId(), item.getUnitPrice(), item.getUnits());
                 }
 
-                basketRepository.update(userBasket);
+                basketRepository.update(userBasket); */
                 basketRepository.delete(anonymousBasket);
             });
         }
@@ -43,8 +44,23 @@ public class BasketServiceImpl implements BasketService {
 
     @Override
     public Basket addItemToBasket(String username, CatalogItemId catalogItemId, BigDecimal price, int units) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'addItemToBasket'");
+        try(var executor = Executors.newVirtualThreadPerTaskExecutor()) {
+            return executor.submit(() -> {
+                var basket = basketRepository.getByBuyerId(username);
+
+                if(basket == null) {
+                    basket = new Basket(username);
+                    basketRepository.add(basket);
+                }
+
+                basket.addItem(catalogItemId, price, units);
+                basketRepository.update(basket);
+                return basket;
+            }).get();
+        }
+        catch(Exception e) {
+            throw new RuntimeException("Error al agregar item al carrito", e);
+        }
     }
 
     @Override

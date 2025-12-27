@@ -1,7 +1,7 @@
 plugins {
 	id 'java'
 	id 'org.springframework.boot' version '4.0.1'
-	id 'io.spring.dependency-management' version '1.1.7'
+	alias(libs.plugins.spring.dependency.management)
 }
 
 group = 'sv.com.eshop'
@@ -14,26 +14,29 @@ java {
 	}
 }
 
-/* repositories {
-	mavenCentral()
-} */
-
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-webmvc'
-	implementation 'org.springframework.modulith:spring-modulith-starter-jpa'
-	implementation 'org.springframework.modulith:spring-modulith-actuator'
+	annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	/* implementation 'org.springframework.boot:spring-boot-starter-webmvc' */
+/* 	implementation 'org.springframework.modulith:spring-modulith-starter-jpa'
+	implementation 'org.springframework.modulith:spring-modulith-actuator' */
 	implementation 'org.jmolecules.integrations:jmolecules-starter-ddd'
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	//implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	runtimeOnly 'com.h2database:h2'
-	testImplementation 'org.springframework.modulith:spring-modulith-junit'
-	implementation project(':eshop-application-core')
+	implementation 'org.springframework.boot:spring-boot-h2console'
+	/* testImplementation 'org.springframework.modulith:spring-modulith-junit' */
+	
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	testImplementation 'org.springframework.boot:spring-boot-starter-webmvc-test'
+/* 	testImplementation 'org.springframework.boot:spring-boot-starter-webmvc-test' */
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+	implementation project(':eshop-application-core')
+	implementation project(':eshop-infrastructure')
 }
 
 dependencyManagement {
     imports {
+		mavenBom "org.springframework.boot:spring-boot-dependencies:4.0.1"
         mavenBom "org.springframework.modulith:spring-modulith-bom:2.0.1"
         mavenBom "org.jmolecules:jmolecules-bom:2023.2.0"
     }
