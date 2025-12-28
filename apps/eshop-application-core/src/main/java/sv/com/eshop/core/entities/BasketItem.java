@@ -32,7 +32,7 @@ public class BasketItem {
         return this.units;
     }
 
-    public BigDecimal getSubTotal() {
+    public BigDecimal subTotal() {
         return this.unitPrice.multiply(BigDecimal.valueOf(units));
     }
 

@@ -6,7 +6,7 @@
 <!--      -->
 
     <!-- Mapeo del Item de la Canasta -->
-<!--     <embeddable class="sv.com.eshop.core.entities.BasketItem">
+    <embeddable class="sv.com.eshop.core.entities.BasketItem">
         <attributes>
             <embedded name="catalogItemId">
                 <attribute-override name="id">
@@ -20,7 +20,7 @@
                 <column name="units"/>
             </basic>
         </attributes>
-    </embeddable> -->
+    </embeddable>
     <embeddable class="sv.com.eshop.core.entities.Basket$BasketIdentifier">
         <attributes>
             <basic name="id">
@@ -28,18 +28,18 @@
             </basic>
         </attributes>
     </embeddable>
-    <entity class="sv.com.eshop.core.entities.Basket">
+    <entity class="sv.com.eshop.core.entities.Basket" access="FIELD">
         <table name="Baskets"/>
         <attributes>
             <embedded-id name="id"/>
             <basic name="buyerId">
                 <column name="buyer_id" nullable="false"/>
             </basic>
-<!--             <element-collection name="items">
+            <element-collection name="items">
                 <collection-table name="BasketItems">
                     <join-column name="basket_id"/>
                 </collection-table>
-            </element-collection> -->
+            </element-collection>
         </attributes>
     </entity>
 </entity-mappings>
