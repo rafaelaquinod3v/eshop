@@ -10,9 +10,9 @@ import sv.com.eshop.core.CatalogItem.CatalogItemId;
 @ValueObject
 public class BasketItem {
 
-    private final CatalogItemId catalogItemId;
-    private final BigDecimal unitPrice;
-    private final int units;
+    private CatalogItemId catalogItemId;
+    private BigDecimal unitPrice;
+    private int units;
 
     public BasketItem(CatalogItemId catalogItemId, BigDecimal unitPrice, int units) {
         this.catalogItemId = catalogItemId;
@@ -45,6 +45,9 @@ public class BasketItem {
             Objects.equals(this.unitPrice, that.getUnitPrice()) &&
             Objects.equals(this.units, that.getUnits());
     }
+
+    // Requerido por JPA (proxies/reflexión)
+    protected BasketItem() {}
 
     @Override
     public int hashCode(){

@@ -1,39 +1,12 @@
 package sv.com.eshop.infrastructure;
 
-import sv.com.eshop.core.BasketRepository;
 import sv.com.eshop.core.entities.Basket;
 import sv.com.eshop.core.entities.Basket.BasketIdentifier;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
-public class JpaBasketRepository  implements BasketRepository {
-
-    @Override
-    public void add(Basket basket) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'add'");
-    }
-
-    @Override
-    public void update(Basket basket) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
-    }
-
-    @Override
-    public Basket getById(BasketIdentifier id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getById'");
-    }
-
-    @Override
-    public Basket getByBuyerId(String buyerId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getByBuyerId'");
-    }
-
-    @Override
-    public void delete(Basket basket) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
-    }
-    
+public interface JpaBasketRepository extends JpaRepository<Basket, BasketIdentifier>{
+    @Query("SELECT b FROM Basket b WHERE b.buyerId = :buyerId")
+    Basket findByBuyerId(@Param("buyerId") String buyerId);
 }

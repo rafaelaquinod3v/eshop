@@ -2,9 +2,7 @@ package sv.com.eshop.core;
 
 import java.math.BigDecimal;
 import java.util.Map;
-import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
-
 import sv.com.eshop.core.CatalogItem.CatalogItemId;
 import sv.com.eshop.core.entities.Basket;
 import sv.com.eshop.core.entities.Basket.BasketIdentifier;
@@ -24,7 +22,7 @@ public class BasketServiceImpl implements BasketService {
             executor.submit(() -> {
                 
                 var anonymousBasket = basketRepository.getByBuyerId(anonymousId);
-/*                 if(anonymousBasket == null) return;
+                if(anonymousBasket == null) return;
 
                 var userBasket = basketRepository.getByBuyerId(username);
                 if(userBasket == null) {
@@ -36,7 +34,7 @@ public class BasketServiceImpl implements BasketService {
                     userBasket.addItem(item.getCatalogItemId(), item.getUnitPrice(), item.getUnits());
                 }
 
-                basketRepository.update(userBasket); */
+                basketRepository.update(userBasket);
                 basketRepository.delete(anonymousBasket);
             });
         }
