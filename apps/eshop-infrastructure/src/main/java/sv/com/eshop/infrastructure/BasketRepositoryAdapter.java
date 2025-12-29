@@ -1,6 +1,7 @@
 package sv.com.eshop.infrastructure;
 
 import java.util.Objects;
+import java.util.Optional;
 
 import org.springframework.stereotype.Component;
 import sv.com.eshop.core.BasketRepository;
@@ -17,9 +18,9 @@ public class BasketRepositoryAdapter implements BasketRepository {
     }
 
     @Override
-    public void add(Basket basket) {
+    public Basket add(Basket basket) {
         Objects.requireNonNull(basket, "Basket cannot be null");
-        this.jpaBasketRepository.save(basket);
+        return this.jpaBasketRepository.save(basket);
     }
 
     @Override
@@ -32,12 +33,12 @@ public class BasketRepositoryAdapter implements BasketRepository {
     @Override
     public Basket getById(BasketIdentifier id) {
         Objects.requireNonNull(id, "BasketIdentifier cannot be null");
-        return this.jpaBasketRepository.findById(id).get();
+        return this.jpaBasketRepository.findById(id).orElse(null);
     }
 
     @Override
-    public Basket getByBuyerId(String buyerId) {
-        return this.jpaBasketRepository.findByBuyerId(buyerId);
+    public Optional<Basket> getByBuyerId(String buyerId) {
+        return this.jpaBasketRepository.findByBuyerIdWithItems(buyerId);
     }
 
     @Override

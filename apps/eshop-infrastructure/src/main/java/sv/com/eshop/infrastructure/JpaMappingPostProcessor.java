@@ -13,7 +13,8 @@ public class JpaMappingPostProcessor implements BeanPostProcessor{
             // Añades tus archivos sin borrar lo que Spring ya configuró
             factoryBean.setMappingResources(
                 "mappings/catalog.orm.xml", 
-                "mappings/basket.orm.xml"
+                "mappings/basket.orm.xml",
+                "mappings/buyer.orm.xml"
             );
         }
         return bean;

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings>
+    <embeddable class="sv.com.eshop.core.entities.Buyer$BuyerIdentifier">
+        <attributes>
+            <basic name="id">
+                <column name="buyer_id" column-definition="UUID"/>
+            </basic>
+        </attributes>
+    </embeddable>
+    <entity class="sv.com.eshop.core.entities.Buyer" access="FIELD">
+        <table name="Buyers"/>
+        <attributes>
+            <embedded-id name="id"/>
+            <basic name="identityGuid">
+                <column name="identity_guid" nullable="false"/>
+            </basic>
+<!--             <element-collection name="items">
+                <collection-table name="BasketItems">
+                    <join-column name="basket_id"/>
+                </collection-table>
+            </element-collection> -->
+        </attributes>
+    </entity>
+</entity-mappings>

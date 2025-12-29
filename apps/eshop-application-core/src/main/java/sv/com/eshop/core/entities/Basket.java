@@ -54,20 +54,6 @@ public class Basket implements AggregateRoot<Basket, Basket.BasketIdentifier> {
         }
     }
     
-/*     public void addItem(CatalogItemId catalogItemId, BigDecimal unitPrice, int units) {
-        if(items.stream().noneMatch(i -> i.getCatalogItemId().equals(catalogItemId))){
-            items.add(new BasketItem(catalogItemId, unitPrice, units));
-            return;
-        }
-        BasketItem exists = items.stream()
-            .filter(i -> i.getCatalogItemId().equals(catalogItemId))
-            .findFirst()
-            .orElseThrow();
-
-        BasketItem newItem = new BasketItem(catalogItemId, unitPrice, exists.getUnits() + units);
-        items.replaceAll(item -> item.getCatalogItemId().equals(catalogItemId) ? newItem : item);
-    } */
-
     public void removeEmptyItems() {
         items.removeIf(i -> i.getUnits() <= 0);
     }

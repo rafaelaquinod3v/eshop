@@ -18,47 +18,29 @@ public class BasketServiceImpl implements BasketService {
 
     @Override
     public void transferBasket(String anonymousId, String username) {
-        try(var executor = Executors.newVirtualThreadPerTaskExecutor()) {
-            executor.submit(() -> {
                 
-                var anonymousBasket = basketRepository.getByBuyerId(anonymousId);
-                if(anonymousBasket == null) return;
+        var anonymousBasket = basketRepository.getByBuyerId(anonymousId).orElse(null);
+        if(anonymousBasket == null) return;
 
-                var userBasket = basketRepository.getByBuyerId(username);
-                if(userBasket == null) {
-                    userBasket = new Basket(username);
-                    basketRepository.add(userBasket);
-                }
+        Basket userBasket = basketRepository.getByBuyerId(username).orElseGet(() -> new Basket(username));
 
-                for(var item : anonymousBasket.getItems()) {
-                    userBasket.addItem(item.getCatalogItemId(), item.getUnitPrice(), item.getUnits());
-                }
-
-                basketRepository.update(userBasket);
-                basketRepository.delete(anonymousBasket);
-            });
+        for(var item : anonymousBasket.getItems()) {
+            userBasket.addItem(item.getCatalogItemId(), item.getUnitPrice(), item.getUnits());
         }
+
+        basketRepository.update(userBasket);
+        basketRepository.delete(anonymousBasket);
     }
 
     @Override
     public Basket addItemToBasket(String username, CatalogItemId catalogItemId, BigDecimal price, int units) {
-        try(var executor = Executors.newVirtualThreadPerTaskExecutor()) {
-            return executor.submit(() -> {
-                var basket = basketRepository.getByBuyerId(username);
 
-                if(basket == null) {
-                    basket = new Basket(username);
-                    basketRepository.add(basket);
-                }
-
-                basket.addItem(catalogItemId, price, units);
-                basketRepository.update(basket);
-                return basket;
-            }).get();
-        }
-        catch(Exception e) {
-            throw new RuntimeException("Error al agregar item al carrito", e);
-        }
+            Basket basket = basketRepository.
+                getByBuyerId(username).orElseGet(() -> basketRepository.add(new Basket(username)));
+            
+            basket.addItem(catalogItemId, price, units);
+            basketRepository.update(basket);
+            return basket;
     }
 
     @Override
