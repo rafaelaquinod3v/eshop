@@ -1,7 +1,7 @@
 package sv.com.eshop.core.entities;
 
 import sv.com.eshop.core.OrderItem;
-import sv.com.eshop.core.entities.Order.OrderId;
+import sv.com.eshop.core.entities.Order.OrderIdentifier;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -14,15 +14,15 @@ import java.util.UUID;
 import org.jmolecules.ddd.types.AggregateRoot;
 import org.jmolecules.ddd.types.Identifier;
 
-public class Order implements AggregateRoot<Order, OrderId>{
+public class Order implements AggregateRoot<Order, OrderIdentifier>{
 
-    private OrderId id;
+    private OrderIdentifier id;
     private LocalDateTime orderDateTime;
     private Address shipToAddress;
     private String buyerId;
     private final List<OrderItem> orderItems = new ArrayList<>();
     
-    private Order(OrderId id, LocalDateTime orderDateTime, String buyerId, Address shipToAddress, List<OrderItem> items){
+    private Order(OrderIdentifier id, LocalDateTime orderDateTime, String buyerId, Address shipToAddress, List<OrderItem> items){
         this.id = Objects.requireNonNull(id, "OrderId cannot be null");
         this.orderDateTime = Objects.requireNonNull(orderDateTime, "OrderDateTime cannot be null");
         this.buyerId = buyerId;
@@ -31,7 +31,7 @@ public class Order implements AggregateRoot<Order, OrderId>{
         this.orderItems.addAll(items);
     }
 
-    public OrderId getId(){
+    public OrderIdentifier getId(){
         return this.id;
     }
 
@@ -52,7 +52,7 @@ public class Order implements AggregateRoot<Order, OrderId>{
     }
 
     public static Order create(String buyerId, Address shipToAddress, List<OrderItem> items) {
-        return new Order(new OrderId(UUID.randomUUID()), LocalDateTime.now(), buyerId, shipToAddress, items);
+        return new Order(new OrderIdentifier(UUID.randomUUID()), LocalDateTime.now(), buyerId, shipToAddress, items);
     }
 
     public BigDecimal total() {
@@ -63,7 +63,7 @@ public class Order implements AggregateRoot<Order, OrderId>{
             .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
-    public static record OrderId(UUID id) implements Identifier {}
+    public static record OrderIdentifier(UUID id) implements Identifier {}
 
     @Override
     public String toString(){

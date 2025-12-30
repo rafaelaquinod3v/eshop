@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings>
+    <embeddable class="sv.com.eshop.core.entities.Order$OrderIdentifier">
+        <attributes>
+            <basic name="id">
+                <column name="order_id" column-definition="UUID"/>
+            </basic>
+        </attributes>
+    </embeddable>
+    <embeddable class="sv.com.eshop.core.entities.Address">
+        <attributes>
+            <basic name="zipCode">
+                <column name="zip_code"/>
+            </basic>
+            <basic name="street">
+                <column name="street"/>
+            </basic>
+            <basic name="city">
+                <column name="city"/>
+            </basic>
+            <basic name="state">
+                <column name="state"/>
+            </basic>
+            <basic name="country">
+                <column name="country"/>
+            </basic>
+        </attributes>
+    </embeddable>
+    <entity class="sv.com.eshop.core.entities.Order" access="FIELD">
+        <table name="Orders"/>
+        <attributes>
+}           <embedded-id name="id" /> <!-- Para OrderIdentifier -->
+            
+            <basic name="orderDateTime">
+                <column name="order_date_time"/>
+            </basic>
+
+            <embedded name="shipToAddress" />
+            
+            <basic name="buyerId">
+                <column name="buyer_id"/>
+            </basic>
+            <one-to-many name="orderItems" orphan-removal="true">
+                <join-column name="order_id" referenced-column-name="order_id" />
+                <cascade>
+                    <cascade-all/> <!-- Propaga persistencia, borrado, etc. -->
+                </cascade>
+            </one-to-many>            
+        </attributes>
+    </entity>
+    <embeddable class="sv.com.eshop.core.OrderItem$OrderItemIdentifier">
+        <attributes>
+            <basic name="id">
+                <column name="order_item_id" column-definition="UUID"/>
+            </basic>
+        </attributes>
+    </embeddable>
+    <embeddable class="sv.com.eshop.core.entities.CatalogItemOrdered">
+        <attributes>
+            <embedded name="catalogItemId">
+                <attribute-override name="id">
+                    <column name="catalog_item_id" nullable="false"/>
+                </attribute-override>
+            </embedded>
+            <basic name="productName">
+                <column name="product_name"/>
+            </basic>
+            <basic name="pictureUri">
+                <column name="picture_uri"/>
+            </basic>
+        </attributes>
+    </embeddable>    
+    <entity class="sv.com.eshop.core.OrderItem" access="FIELD">
+        <table name="order_items"/>
+        <attributes>
+}           <embedded-id name="id" />
+            <embedded name="itemOrdered" />            
+            <basic name="unitPrice" />
+            <basic name="units" />
+        </attributes>
+    </entity>
+</entity-mappings>

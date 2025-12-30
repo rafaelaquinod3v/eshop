@@ -7,6 +7,19 @@
             </basic>
         </attributes>
     </embeddable>
+    <embeddable class="sv.com.eshop.core.entities.PaymentMethod">
+        <attributes>
+            <basic name="alias">
+                <column name="alias"/>
+            </basic>
+            <basic name="cardId">
+                <column name="card_id"/>
+            </basic>
+            <basic name="last4">
+                <column name="last4"/>
+            </basic>
+        </attributes>
+    </embeddable>
     <entity class="sv.com.eshop.core.entities.Buyer" access="FIELD">
         <table name="Buyers"/>
         <attributes>
@@ -14,11 +27,11 @@
             <basic name="identityGuid">
                 <column name="identity_guid" nullable="false"/>
             </basic>
-<!--             <element-collection name="items">
-                <collection-table name="BasketItems">
-                    <join-column name="basket_id"/>
+            <element-collection name="paymentMethods">
+                <collection-table name="PaymentMethods">
+                    <join-column name="buyer_id"/>
                 </collection-table>
-            </element-collection> -->
+            </element-collection>
         </attributes>
     </entity>
 </entity-mappings>

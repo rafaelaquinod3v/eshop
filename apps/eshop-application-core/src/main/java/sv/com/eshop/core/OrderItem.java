@@ -13,7 +13,7 @@ import sv.com.eshop.core.entities.CatalogItemOrdered;
 public class OrderItem {
     
     @Identity
-    private OrderItemId id;
+    private OrderItemIdentifier id;
     private CatalogItemOrdered itemOrdered;
     private BigDecimal unitPrice;
     private int units;
@@ -26,13 +26,13 @@ public class OrderItem {
         if (units <= 0) throw new IllegalArgumentException("Las unidades deben ser mayores a cero");
         if (unitPrice.compareTo(BigDecimal.ZERO) < 0) throw new IllegalArgumentException("El precio no puede ser negativo");
 
-        this.id = new OrderItemId(UUID.randomUUID());
+        this.id = new OrderItemIdentifier(UUID.randomUUID());
         this.itemOrdered = itemOrdered;
         this.unitPrice = unitPrice;
         this.units = units;
     }
 
-    public OrderItemId getId() {
+    public OrderItemIdentifier getId() {
         return this.id;
     }
 
@@ -52,9 +52,9 @@ public class OrderItem {
         return this.unitPrice.multiply(BigDecimal.valueOf(units));
     }
 
-    public static record OrderItemId(UUID id) {
-        public OrderItemId {
-            Objects.requireNonNull(id, "OrderItemId should not be null");
+    public static record OrderItemIdentifier(UUID id) {
+        public OrderItemIdentifier {
+            Objects.requireNonNull(id, "OrderItemIdentifier should not be null");
         }
     }
     
