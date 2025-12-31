@@ -5,22 +5,22 @@ import java.util.Objects;
 
 import org.jmolecules.ddd.annotation.ValueObject;
 
-import sv.com.eshop.core.CatalogItem.CatalogItemId;
+import sv.com.eshop.core.CatalogItem.CatalogItemIdentifier;
 
 @ValueObject
 public class BasketItem {
 
-    private CatalogItemId catalogItemId;
+    private CatalogItemIdentifier catalogItemId;
     private BigDecimal unitPrice;
     private int units;
 
-    public BasketItem(CatalogItemId catalogItemId, BigDecimal unitPrice, int units) {
+    public BasketItem(CatalogItemIdentifier catalogItemId, BigDecimal unitPrice, int units) {
         this.catalogItemId = catalogItemId;
         this.unitPrice = unitPrice;
         this.units = units;
     }
 
-    public CatalogItemId getCatalogItemId() {
+    public CatalogItemIdentifier getCatalogItemId() {
         return this.catalogItemId;
     }
 

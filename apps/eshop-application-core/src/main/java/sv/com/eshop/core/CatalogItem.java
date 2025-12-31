@@ -1,8 +1,8 @@
 package sv.com.eshop.core;
 
-import sv.com.eshop.core.entities.CatalogType.CatalogTypeId;
-import sv.com.eshop.core.CatalogItem.CatalogItemId;
-import sv.com.eshop.core.entities.CatalogBrand.CatalogBrandId;
+import sv.com.eshop.core.entities.CatalogType.CatalogTypeIdentifier;
+import sv.com.eshop.core.CatalogItem.CatalogItemIdentifier;
+import sv.com.eshop.core.entities.CatalogBrand.CatalogBrandIdentifier;
 
 import java.math.BigDecimal;
 import java.time.Instant;
@@ -11,17 +11,17 @@ import java.util.UUID;
 import org.jmolecules.ddd.types.AggregateRoot;
 import org.jmolecules.ddd.types.Identifier;
 
-public class CatalogItem implements AggregateRoot<CatalogItem, CatalogItemId> {
+public class CatalogItem implements AggregateRoot<CatalogItem, CatalogItemIdentifier> {
     
-    private CatalogItemId id = new CatalogItemId(UUID.randomUUID());
+    private CatalogItemIdentifier id = new CatalogItemIdentifier(UUID.randomUUID());
     private String name;
     private String description;
     private BigDecimal price;
     private String pictureUri;
-    private CatalogTypeId catalogTypeId;
-    private CatalogBrandId catalogBrandId;
+    private CatalogTypeIdentifier catalogTypeId;
+    private CatalogBrandIdentifier catalogBrandId;
 
-    public CatalogItemId getId(){
+    public CatalogItemIdentifier getId(){
         return this.id;
     }
 
@@ -41,11 +41,11 @@ public class CatalogItem implements AggregateRoot<CatalogItem, CatalogItemId> {
         return this.pictureUri;
     }
 
-    public CatalogTypeId getCatalogTypeId() {
+    public CatalogTypeIdentifier getCatalogTypeId() {
         return this.catalogTypeId;
     }
 
-    public CatalogBrandId geCatalogBrandId() {
+    public CatalogBrandIdentifier geCatalogBrandId() {
         return this.catalogBrandId;
     }
 
@@ -54,8 +54,8 @@ public class CatalogItem implements AggregateRoot<CatalogItem, CatalogItemId> {
         String description, 
         BigDecimal price, 
         String pictureUri, 
-        CatalogTypeId catalogTypeId,
-        CatalogBrandId catalogBrandId
+        CatalogTypeIdentifier catalogTypeId,
+        CatalogBrandIdentifier catalogBrandId
     ) {
         this.name = name;
         this.description = description;
@@ -86,17 +86,18 @@ public class CatalogItem implements AggregateRoot<CatalogItem, CatalogItemId> {
         this.pictureUri = "images/products/%s?%d".formatted(pictureName, Instant.now().toEpochMilli());
     }
 
-    public void updateType(CatalogTypeId catalogTypeId) {
+    public void updateType(CatalogTypeIdentifier catalogTypeId) {
         if(catalogTypeId == null) throw new IllegalArgumentException("Type must not be null");
         this.catalogTypeId = catalogTypeId;
     }
 
-    public void updateBrand(CatalogBrandId catalogBrandId) {
+    public void updateBrand(CatalogBrandIdentifier catalogBrandId) {
         if(catalogBrandId == null) throw new IllegalArgumentException("Brand must not be null");
         this.catalogBrandId = catalogBrandId;
     }
 
-    public static record CatalogItemId(UUID id) implements Identifier {}
+    protected CatalogItem() {} // Required by JPA
+    public static record CatalogItemIdentifier(UUID id) implements Identifier {}
     public record CatalogItemDetails(String name, String description, BigDecimal price) {}
 
     @Override

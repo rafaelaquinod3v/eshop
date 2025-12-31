@@ -2,16 +2,16 @@ package sv.com.eshop.core.entities;
 
 import java.util.Objects;
 import java.util.UUID;
-import sv.com.eshop.core.entities.CatalogBrand.CatalogBrandId;
+import sv.com.eshop.core.entities.CatalogBrand.CatalogBrandIdentifier;
 import org.jmolecules.ddd.types.AggregateRoot;
 import org.jmolecules.ddd.types.Identifier;
 
-public class CatalogBrand implements AggregateRoot <CatalogBrand, CatalogBrandId> {
+public class CatalogBrand implements AggregateRoot <CatalogBrand, CatalogBrandIdentifier> {
     
-    private CatalogBrandId id = new CatalogBrandId(UUID.randomUUID());
+    private CatalogBrandIdentifier id = new CatalogBrandIdentifier(UUID.randomUUID());
     private String brand;
     
-    public CatalogBrandId getId() {
+    public CatalogBrandIdentifier getId() {
         return this.id;
     }
 
@@ -23,7 +23,7 @@ public class CatalogBrand implements AggregateRoot <CatalogBrand, CatalogBrandId
         this.brand = brand;
     }
     
-    public static record CatalogBrandId(UUID id) implements Identifier {}
+    public static record CatalogBrandIdentifier(UUID id) implements Identifier {}
 
     @Override
     public boolean equals(Object o) {

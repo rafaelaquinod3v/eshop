@@ -1,11 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <entity-mappings>
 <!--     <package>sv.com.eshop.core</package> -->
-    <embeddable class="sv.com.eshop.core.CatalogItem$CatalogItemId">
+    <embeddable class="sv.com.eshop.core.CatalogItem$CatalogItemIdentifier">
         <attributes>
             <basic name="id">
                 <column name="catalog_item_id" column-definition="UUID"/>
             </basic>
         </attributes>
     </embeddable>
+    <embeddable class="sv.com.eshop.core.entities.CatalogBrand$CatalogBrandIdentifier">
+        <attributes>
+            <basic name="id">
+                <column name="catalog_brand_id" column-definition="UUID"/>
+            </basic>
+        </attributes>
+    </embeddable>
+    <embeddable class="sv.com.eshop.core.entities.CatalogType$CatalogTypeIdentifier">
+        <attributes>
+            <basic name="id">
+                <column name="catalog_type_id" column-definition="UUID"/>
+            </basic>
+        </attributes>
+    </embeddable>
+    <entity class="sv.com.eshop.core.CatalogItem" access="FIELD">
+        <table name="catalog_items"/>
+        <attributes>
+}           <embedded-id name="id" />
+            
+            <basic name="name" />
+            <basic name="description" />
+            <basic name="price" />
+            <basic name="pictureUri" />
+
+            <embedded name="catalogTypeId" />            
+            <embedded name="catalogBrandId" />            
+        </attributes>
+    </entity>
 </entity-mappings>

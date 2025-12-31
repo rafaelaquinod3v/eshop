@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import sv.com.eshop.core.CatalogItem;
-import sv.com.eshop.core.CatalogItem.CatalogItemId;
+import sv.com.eshop.core.CatalogItem.CatalogItemIdentifier;
 import sv.com.eshop.core.interfaces.BasketService;
 
 @RestController
@@ -23,7 +23,7 @@ public class HomeController {
   @GetMapping("/hello")
   @Transactional
   public String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
-    this.basketService.addItemToBasket("Anonymous01", new CatalogItemId(UUID.fromString("048cfa69-8092-4b38-8d83-81ab13c69095")), BigDecimal.valueOf(9.99), 25);
+    this.basketService.addItemToBasket("Anonymous01", new CatalogItemIdentifier(UUID.fromString("048cfa69-8092-4b38-8d83-81ab13c69095")), BigDecimal.valueOf(9.99), 25);
     return String.format(
       "Hello %s! %s", 
       name, 

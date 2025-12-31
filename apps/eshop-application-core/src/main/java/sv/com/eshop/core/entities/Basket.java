@@ -7,11 +7,10 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
-
 import org.jmolecules.ddd.types.AggregateRoot;
 import org.jmolecules.ddd.types.Identifier;
 
-import sv.com.eshop.core.CatalogItem.CatalogItemId;
+import sv.com.eshop.core.CatalogItem.CatalogItemIdentifier;
 
 public class Basket implements AggregateRoot<Basket, Basket.BasketIdentifier> {
     
@@ -40,7 +39,7 @@ public class Basket implements AggregateRoot<Basket, Basket.BasketIdentifier> {
             .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
-    public void addItem(CatalogItemId catalogItemId, BigDecimal unitPrice, int units) {
+    public void addItem(CatalogItemIdentifier catalogItemId, BigDecimal unitPrice, int units) {
         Optional<BasketItem> existingItem = items.stream()
                 .filter(i -> i.getCatalogItemId().equals(catalogItemId))
                 .findFirst();

@@ -4,22 +4,22 @@ import java.util.Objects;
 
 import org.jmolecules.ddd.annotation.ValueObject;
 
-import sv.com.eshop.core.CatalogItem.CatalogItemId;
+import sv.com.eshop.core.CatalogItem.CatalogItemIdentifier;
 
 @ValueObject
 public final class CatalogItemOrdered {
 
-    private final CatalogItemId catalogItemId;
+    private final CatalogItemIdentifier catalogItemId;
     private final String productName;
     private final String pictureUri;
 
-    public CatalogItemOrdered(CatalogItemId catalogItemId, String productName, String pictureUri) {
+    public CatalogItemOrdered(CatalogItemIdentifier catalogItemId, String productName, String pictureUri) {
         this.catalogItemId = Objects.requireNonNull(catalogItemId, "ID is required");
         this.productName = Objects.requireNonNull(productName, "ProductName is required");
         this.pictureUri = pictureUri;
     }
 
-    public CatalogItemId getCatalogItemId() {
+    public CatalogItemIdentifier getCatalogItemId() {
         return this.catalogItemId;
     }
 

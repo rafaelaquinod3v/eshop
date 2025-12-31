@@ -5,13 +5,13 @@ import java.util.UUID;
 import org.jmolecules.ddd.types.AggregateRoot;
 import org.jmolecules.ddd.types.Identifier;
 
-public class CatalogType implements AggregateRoot<CatalogType, CatalogType.CatalogTypeId> {
+public class CatalogType implements AggregateRoot<CatalogType, CatalogType.CatalogTypeIdentifier> {
     
-    private final CatalogTypeId id;
+    private final CatalogTypeIdentifier id;
     private final String type;
 
     @Override
-    public CatalogTypeId getId() {
+    public CatalogTypeIdentifier getId() {
         return this.id;
     }
 
@@ -19,22 +19,22 @@ public class CatalogType implements AggregateRoot<CatalogType, CatalogType.Catal
         return this.type;
     }
 
-    private CatalogType(CatalogTypeId id, String type) {
+    private CatalogType(CatalogTypeIdentifier id, String type) {
         validateType(type);
         this.id = Objects.requireNonNull(id, "CatalogTypeId cannot be null");
         this.type = type.trim();
     }
 
     public static CatalogType create(String type){
-        return new CatalogType(new CatalogTypeId(UUID.randomUUID()), type);
+        return new CatalogType(new CatalogTypeIdentifier(UUID.randomUUID()), type);
     }
 
-    public static CatalogType of(CatalogTypeId id, String type) {
+    public static CatalogType of(CatalogTypeIdentifier id, String type) {
         return new CatalogType(id, type);
     }
 
-    public static record CatalogTypeId(UUID id) implements Identifier {
-        public CatalogTypeId {
+    public static record CatalogTypeIdentifier(UUID id) implements Identifier {
+        public CatalogTypeIdentifier {
             Objects.requireNonNull(id, "Id UUID cannot be null");
         }
     }

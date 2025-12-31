@@ -2,12 +2,15 @@ package sv.com.eshop.core;
 
 import java.math.BigDecimal;
 import java.util.Map;
-import java.util.concurrent.Executors;
-import sv.com.eshop.core.CatalogItem.CatalogItemId;
+
+import org.jmolecules.ddd.annotation.Service;
+
+import sv.com.eshop.core.CatalogItem.CatalogItemIdentifier;
 import sv.com.eshop.core.entities.Basket;
 import sv.com.eshop.core.entities.Basket.BasketIdentifier;
 import sv.com.eshop.core.interfaces.BasketService;
 
+@Service
 public class BasketServiceImpl implements BasketService {
 
     private final BasketRepository basketRepository;
@@ -33,7 +36,7 @@ public class BasketServiceImpl implements BasketService {
     }
 
     @Override
-    public Basket addItemToBasket(String username, CatalogItemId catalogItemId, BigDecimal price, int units) {
+    public Basket addItemToBasket(String username, CatalogItemIdentifier catalogItemId, BigDecimal price, int units) {
 
             Basket basket = basketRepository.
                 getByBuyerId(username).orElseGet(() -> basketRepository.add(new Basket(username)));
@@ -51,8 +54,10 @@ public class BasketServiceImpl implements BasketService {
 
     @Override
     public void deleteBasket(BasketIdentifier id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteBasket'");
+        var basket = this.basketRepository.getById(id);
+        if(basket != null) {
+            this.basketRepository.delete(basket);
+        }
     }
     
 }
