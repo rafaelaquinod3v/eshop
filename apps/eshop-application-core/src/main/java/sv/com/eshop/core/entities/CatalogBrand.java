@@ -22,6 +22,8 @@ public class CatalogBrand implements AggregateRoot <CatalogBrand, CatalogBrandId
     public CatalogBrand(String brand) {
         this.brand = brand;
     }
+
+    protected CatalogBrand() {} // Required by JPA
     
     public static record CatalogBrandIdentifier(UUID id) implements Identifier {}
 

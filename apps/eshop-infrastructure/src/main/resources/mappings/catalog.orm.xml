@@ -15,6 +15,13 @@
             </basic>
         </attributes>
     </embeddable>
+    <entity class="sv.com.eshop.core.entities.CatalogBrand" access="FIELD">
+        <table name="catalog_brands"/>
+        <attributes>
+}           <embedded-id name="id" />
+            <basic name="brand" />          
+        </attributes>
+    </entity>
     <embeddable class="sv.com.eshop.core.entities.CatalogType$CatalogTypeIdentifier">
         <attributes>
             <basic name="id">
@@ -22,6 +29,13 @@
             </basic>
         </attributes>
     </embeddable>
+    <entity class="sv.com.eshop.core.entities.CatalogType" access="FIELD">
+        <table name="catalog_types"/>
+        <attributes>
+}           <embedded-id name="id" />
+            <basic name="type" />          
+        </attributes>
+    </entity>    
     <entity class="sv.com.eshop.core.CatalogItem" access="FIELD">
         <table name="catalog_items"/>
         <attributes>
