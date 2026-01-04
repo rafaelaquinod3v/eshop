@@ -7,8 +7,8 @@ import org.jmolecules.ddd.types.Identifier;
 
 public class CatalogType implements AggregateRoot<CatalogType, CatalogType.CatalogTypeIdentifier> {
     
-    private final CatalogTypeIdentifier id;
-    private final String type;
+    private CatalogTypeIdentifier id;
+    private String type;
 
     @Override
     public CatalogTypeIdentifier getId() {
@@ -32,6 +32,8 @@ public class CatalogType implements AggregateRoot<CatalogType, CatalogType.Catal
     public static CatalogType of(CatalogTypeIdentifier id, String type) {
         return new CatalogType(id, type);
     }
+
+    protected CatalogType() {} // Required by JPA
 
     public static record CatalogTypeIdentifier(UUID id) implements Identifier {
         public CatalogTypeIdentifier {
