@@ -1,9 +1,5 @@
 package sv.com.eshop.core;
 
-import java.util.List;
+import sv.com.eshop.core.CatalogItem.CatalogItemIdentifier;
 
-public interface CatalogItemRepository {
-    List<CatalogItem> getCatalogItems();
-
-    CatalogItem add(CatalogItem catalogItem);    
-} 
+public interface CatalogItemRepository extends DomainRepository<CatalogItem, CatalogItemIdentifier> {} 

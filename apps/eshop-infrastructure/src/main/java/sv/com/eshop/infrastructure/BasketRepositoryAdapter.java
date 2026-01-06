@@ -1,8 +1,6 @@
 package sv.com.eshop.infrastructure;
 
-import java.util.Objects;
 import java.util.Optional;
-
 import org.springframework.stereotype.Component;
 import sv.com.eshop.core.BasketRepository;
 import sv.com.eshop.core.entities.Basket;

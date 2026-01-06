@@ -24,20 +24,20 @@ public class DataInitializer {
             var catalogType1 = CatalogType.create("SHOES");
             var catalogType2 = CatalogType.create("ACCESSORIES");
 
-            catalogTypeRepository.add(catalogType1);
-            catalogTypeRepository.add(catalogType2);
+            catalogTypeRepository.save(catalogType1);
+            catalogTypeRepository.save(catalogType2);
             
             var catalogBrand1 = new CatalogBrand("ADIDAS");
             var catalogBrand2 = new CatalogBrand("PUMA");
 
-            catalogBrandRepository.add(catalogBrand1);
-            catalogBrandRepository.add(catalogBrand2);
+            catalogBrandRepository.save(catalogBrand1);
+            catalogBrandRepository.save(catalogBrand2);
 
             var catalogItem1 = new CatalogItem("name", "description", BigDecimal.valueOf(5.99), "picture", null, null);
             var catalogItem2 = new CatalogItem("name", "description", BigDecimal.valueOf(6.99), "picture", null, null);
 
-            catalogItemRepository.add(catalogItem1);
-            catalogItemRepository.add(catalogItem2);
+            catalogItemRepository.save(catalogItem1);
+            catalogItemRepository.save(catalogItem2);
 
             System.out.println("Database initilized successfully.");
         };

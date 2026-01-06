@@ -1,9 +1,6 @@
 package sv.com.eshop.core;
 
-import java.util.List;
 import sv.com.eshop.core.entities.CatalogType;
+import sv.com.eshop.core.entities.CatalogType.CatalogTypeIdentifier;
 
-public interface CatalogTypeRepository {
-    List<CatalogType> getCatalogTypes();
-    CatalogType add(CatalogType catalogType);
-}
+public interface CatalogTypeRepository extends DomainRepository<CatalogType, CatalogTypeIdentifier> {}

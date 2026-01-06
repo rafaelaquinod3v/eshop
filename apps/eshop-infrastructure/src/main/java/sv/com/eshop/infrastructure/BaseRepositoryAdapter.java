@@ -1,10 +1,9 @@
 package sv.com.eshop.infrastructure;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-
 import org.springframework.data.jpa.repository.JpaRepository;
-
 import sv.com.eshop.core.DomainRepository;
 
 public abstract class BaseRepositoryAdapter<T, ID, R extends JpaRepository<T, ID>> 
@@ -20,6 +19,11 @@ public abstract class BaseRepositoryAdapter<T, ID, R extends JpaRepository<T, ID
     public Optional<T> findById(ID id){
         Objects.requireNonNull(id);
         return repository.findById(id);
+    }
+
+    @Override
+    public List<T> findAll() {
+        return repository.findAll();
     }
 
     @Override

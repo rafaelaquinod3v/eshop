@@ -11,11 +11,11 @@ public class CatalogItemServiceImpl implements CatalogItemService {
 
     @Override
     public List<CatalogItem> getCatalogItems() {
-        return this.catalogItemRepository.getCatalogItems();
+        return this.catalogItemRepository.findAll();
     }
 
     @Override
     public CatalogItem add(CatalogItem catalogItem) {
-        return this.catalogItemRepository.add(catalogItem);
+        return this.catalogItemRepository.save(catalogItem);
     }    
 }

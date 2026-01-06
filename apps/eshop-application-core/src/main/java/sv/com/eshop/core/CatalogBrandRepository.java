@@ -1,10 +1,8 @@
 package sv.com.eshop.core;
 
-import java.util.List;
-
 import sv.com.eshop.core.entities.CatalogBrand;
+import sv.com.eshop.core.entities.CatalogBrand.CatalogBrandIdentifier;
 
-public interface CatalogBrandRepository {
-    List<CatalogBrand> getCatalogBrands();
-    CatalogBrand add(CatalogBrand catalogBrand);
+public interface CatalogBrandRepository extends DomainRepository<CatalogBrand, CatalogBrandIdentifier> {
+
 }
