@@ -2,9 +2,7 @@ package sv.com.eshop.core;
 
 import java.math.BigDecimal;
 import java.util.Map;
-
 import org.jmolecules.ddd.annotation.Service;
-
 import sv.com.eshop.core.CatalogItem.CatalogItemIdentifier;
 import sv.com.eshop.core.entities.Basket;
 import sv.com.eshop.core.entities.Basket.BasketIdentifier;
@@ -22,16 +20,16 @@ public class BasketServiceImpl implements BasketService {
     @Override
     public void transferBasket(String anonymousId, String username) {
                 
-        var anonymousBasket = basketRepository.getByBuyerId(anonymousId).orElse(null);
+        var anonymousBasket = basketRepository.findByBuyerId(anonymousId).orElse(null);
         if(anonymousBasket == null) return;
 
-        Basket userBasket = basketRepository.getByBuyerId(username).orElseGet(() -> new Basket(username));
+        Basket userBasket = basketRepository.findByBuyerId(username).orElseGet(() -> new Basket(username));
 
         for(var item : anonymousBasket.getItems()) {
             userBasket.addItem(item.getCatalogItemId(), item.getUnitPrice(), item.getUnits());
         }
 
-        basketRepository.update(userBasket);
+        basketRepository.save(userBasket);
         basketRepository.delete(anonymousBasket);
     }
 
@@ -39,10 +37,10 @@ public class BasketServiceImpl implements BasketService {
     public Basket addItemToBasket(String username, CatalogItemIdentifier catalogItemId, BigDecimal price, int units) {
 
             Basket basket = basketRepository.
-                getByBuyerId(username).orElseGet(() -> basketRepository.add(new Basket(username)));
+                findByBuyerId(username).orElseGet(() -> basketRepository.save(new Basket(username)));
             
             basket.addItem(catalogItemId, price, units);
-            basketRepository.update(basket);
+            basketRepository.save(basket);
             return basket;
     }
 
@@ -54,9 +52,9 @@ public class BasketServiceImpl implements BasketService {
 
     @Override
     public void deleteBasket(BasketIdentifier id) {
-        var basket = this.basketRepository.getById(id);
-        if(basket != null) {
-            this.basketRepository.delete(basket);
+        var basketOpt = this.basketRepository.findById(id);
+        if(basketOpt.isPresent()) {
+            this.basketRepository.delete(basketOpt.get());
         }
     }
     
