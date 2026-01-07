@@ -1,0 +1,4 @@
+:host {
+  margin-top: auto; /* En un entorno Flex, esto empuja el elemento al fondo */
+  display: block;
+}

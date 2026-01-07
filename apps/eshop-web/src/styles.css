@@ -1,1 +1,24 @@
-/* You can add global styles to this file, and also import other style files */
+/* 1. Obliga a la ventana y al body a ocupar todo el alto */
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+/* 2. El selector de tu componente principal debe ser un contenedor Flex.
+   Cámbialo si tu selector no es app-root */
+app-root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Altura total de la pantalla */
+}
+
+/* 3. El contenedor de en medio debe "comerse" el espacio sobrante */
+.layout-body {
+  flex: 1 0 auto;
+  display: flex; /* Para que aside y main queden uno al lado del otro */
+}
+
+/* 4. Evita que el footer se encoja si hay mucho contenido */
+app-footer {
+  flex-shrink: 0;
+}

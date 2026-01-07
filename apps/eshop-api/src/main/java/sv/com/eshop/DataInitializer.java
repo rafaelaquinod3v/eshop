@@ -1,12 +1,9 @@
 package sv.com.eshop;
 
 import java.math.BigDecimal;
-
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
-
 import sv.com.eshop.core.CatalogBrandRepository;
 import sv.com.eshop.core.CatalogItem;
 import sv.com.eshop.core.CatalogItemRepository;
@@ -18,7 +15,6 @@ import sv.com.eshop.core.entities.CatalogType;
 public class DataInitializer {
     
     @Bean
-   // @Profile("dev")
     CommandLineRunner initDatabase(CatalogTypeRepository catalogTypeRepository, CatalogBrandRepository catalogBrandRepository, CatalogItemRepository catalogItemRepository) {
         return args -> {
             var catalogType1 = CatalogType.create("SHOES");
