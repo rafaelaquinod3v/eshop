@@ -13,6 +13,10 @@ export const appRoutes: Route[] = [
             {
                 path: 'login',
                 loadComponent: () => import('./pages/login/login').then(m => m.Login)
+            },
+                        {
+                path: 'basket',
+                loadComponent: () => import('./pages/cart/cart').then(m => m.Cart)
             }
         ]
     }

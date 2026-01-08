@@ -1,0 +1,16 @@
+header {
+    display: flex;
+    .brand {
+        margin-right: auto;
+    }
+    .login {
+        margin: 1em;
+        text-decoration: none;
+        color: black;
+        font-weight: 400;
+        font-family: sans-serif;
+    }
+    .cart {
+        margin: 0.5em;
+    }
+}
