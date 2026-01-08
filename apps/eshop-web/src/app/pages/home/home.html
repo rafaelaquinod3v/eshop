@@ -1,1 +1,17 @@
-<p>home works!</p>
+<img src="main_banner.png" alt="" srcset="">
+<!-- Contenedor principal con Grid -->
+<div class="product-grid">
+  <!-- Ejecutamos el signal con () para obtener el Array -->
+  @for (item of catalogItems(); track item.id) {
+    <div class="product-card">
+      <img src="http://localhost:8080/api/{{ item.pictureUri }}" [alt]="item.name">
+      <div class="card-content">
+        <h3>{{ item.name }}</h3>
+        <p class="price">{{ item.price | currency }}</p>
+      </div>
+    </div>
+  } @empty {
+    <p>No hay productos en el catálogo.</p>
+  }
+</div>
+

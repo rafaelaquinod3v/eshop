@@ -23,6 +23,7 @@ public class SecurityConfig {
         http
             .httpBasic(withDefaults())
             .csrf(csrf -> csrf.disable())
+            .authorizeHttpRequests(auth -> auth.requestMatchers("/*.jpg", "/*.png", "/images/**").permitAll())
             .authorizeHttpRequests(auth -> auth.requestMatchers("/api/basket/**").permitAll().anyRequest().permitAll())
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .anonymous(anonymous -> anonymous.principal("anonymousUser").authorities("ROLE_ANONYMOUS"));

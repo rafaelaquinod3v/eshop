@@ -1,0 +1,37 @@
+/* 1. Box sizing mejorado: incluye padding y border en el ancho total */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* 2. Eliminar márgenes por defecto de elementos comunes */
+* {
+  margin: 0;
+}
+
+/* 3. Asegurar que el cuerpo ocupe toda la altura de la pantalla */
+html, body {
+  height: 100%;
+}
+
+/* 4. Mejoras tipográficas y suavizado de fuentes */
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  font-family: system-ui, -apple-system, sans-serif; /* O tu fuente preferida */
+}
+
+/* 5. Imágenes responsivas por defecto */
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* 6. Evitar que los controles de formulario tengan fuentes diferentes */
+input, button, textarea, select {
+  font: inherit;
+}
+
+/* 7. Evitar desbordes de texto largos */
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}

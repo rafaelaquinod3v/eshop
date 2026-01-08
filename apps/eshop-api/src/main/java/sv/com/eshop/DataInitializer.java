@@ -29,8 +29,8 @@ public class DataInitializer {
             catalogBrandRepository.save(catalogBrand1);
             catalogBrandRepository.save(catalogBrand2);
 
-            var catalogItem1 = new CatalogItem("name", "description", BigDecimal.valueOf(5.99), "picture", null, null);
-            var catalogItem2 = new CatalogItem("name", "description", BigDecimal.valueOf(6.99), "picture", null, null);
+            var catalogItem1 = new CatalogItem(".NET Bot Black Sweatshirt", "description", BigDecimal.valueOf(19.50), "1.png", null, null);
+            var catalogItem2 = new CatalogItem(".NET Black & White Mug", "description", BigDecimal.valueOf(8.50), "2.png", null, null);
 
             catalogItemRepository.save(catalogItem1);
             catalogItemRepository.save(catalogItem2);
