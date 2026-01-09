@@ -1,4 +1,4 @@
-<img src="main_banner.png" alt="" srcset="">
+<app-hero></app-hero>
 <!-- Contenedor principal con Grid -->
 <div class="product-grid">
   <!-- Ejecutamos el signal con () para obtener el Array -->
@@ -8,6 +8,7 @@
       <div class="card-content">
         <h3>{{ item.name }}</h3>
         <p class="price">{{ item.price | currency }}</p>
+        <button class="btn-cart" (click)="addToCart(item.id)">ADD TO CART</button>
       </div>
     </div>
   } @empty {

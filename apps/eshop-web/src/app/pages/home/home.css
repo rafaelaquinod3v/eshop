@@ -1,6 +1,6 @@
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 20px;
   padding: 20px;
 }
@@ -16,6 +16,7 @@
 .product-card:hover {
   transform: translateY(-5px); /* Efecto de elevación al pasar el mouse */
   box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  cursor: pointer;
 }
 
 .product-card img {
@@ -23,3 +24,31 @@
   height: 200px;
   object-fit: cover;
 }
+
+.btn-cart {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #2563eb; /* Azul moderno */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px; /* Bordes redondeados modernos */
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease; /* Transición suave */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn-cart:hover {
+  background-color: #1d4ed8;
+  transform: translateY(-1px); /* Elevación sutil al pasar el mouse */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+}
+
+.btn-cart:active {
+  transform: translateY(0); /* Efecto de "presionando" */
+}
+
+
+
