@@ -11,7 +11,6 @@ import jakarta.servlet.http.HttpServletResponse;
 public class CookieService {
     
     public void createBasketCookie(HttpServletResponse response, String username) {
-        //username = UUID.randomUUID().toString();
         Cookie cookie = new Cookie("eShop", username);
         cookie.setPath("/");
         // cookie.setHttpOnly(true);

@@ -38,9 +38,9 @@ public class BasketServiceImpl implements BasketService {
 
             Basket basket = basketRepository.
                 findByBuyerId(username).orElseGet(() -> basketRepository.save(new Basket(username)));
-            
+
             basket.addItem(catalogItemId, price, units);
-            basketRepository.save(basket);
+            basket = basketRepository.save(basket);
             return basket;
     }
 
