@@ -97,7 +97,12 @@ public class CatalogItem implements AggregateRoot<CatalogItem, CatalogItemIdenti
     }
 
     protected CatalogItem() {} // Required by JPA
-    public static record CatalogItemIdentifier(UUID id) implements Identifier {}
+
+    public static record CatalogItemIdentifier(UUID id) implements DomainIdentifier {
+        public static CatalogItemIdentifier of(String uuid) {
+            return DomainIdentifier.from(CatalogItemIdentifier.class, CatalogItemIdentifier::new , uuid);
+        }
+    }
     public record CatalogItemDetails(String name, String description, BigDecimal price) {}
 
     @Override

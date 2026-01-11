@@ -7,7 +7,7 @@ import jakarta.servlet.http.HttpServletResponse;
 @Service
 public class CookieService {
     
-    public void createBasketCookie(HttpServletResponse response, String username) {
+    public void createBasketCookie(String username, HttpServletResponse response) {
         Cookie cookie = new Cookie("eShop", username);
         cookie.setPath("/");
         // cookie.setHttpOnly(true);

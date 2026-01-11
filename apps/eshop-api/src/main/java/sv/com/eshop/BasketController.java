@@ -37,7 +37,7 @@ public class BasketController {
         Authentication auth
     ) {
         // 1. Obtener el item del catálogo una sola vez
-        var catalogItemId = new CatalogItemIdentifier(UUID.fromString(request.catalogItemId()));
+        var catalogItemId = CatalogItemIdentifier.of(request.catalogItemId());
         var catalogItem = catalogItemRepository.findById(catalogItemId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Item no encontrado"));
 
@@ -66,7 +66,7 @@ public class BasketController {
 
         // Si no hay cookie válida, generar una nueva y setearla
         String newGuestId = UUID.randomUUID().toString();
-        cookieService.createBasketCookie(response, newGuestId);
+        cookieService.createBasketCookie(newGuestId, response);
         return newGuestId;
     }
     
