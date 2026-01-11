@@ -2,27 +2,17 @@ package sv.com.eshop;
 
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
-
-import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import sv.com.eshop.core.CatalogItemRepository;
 import sv.com.eshop.core.entities.Basket;
-import sv.com.eshop.core.CatalogItem;
 import sv.com.eshop.core.CatalogItem.CatalogItemIdentifier;
 import sv.com.eshop.core.interfaces.BasketService;
 import sv.com.eshop.dto.AddItemRequest;
-
-import java.math.BigDecimal;
-import java.util.Collections;
-import java.util.Map;
-import java.util.Optional;
 import java.util.UUID;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CookieValue;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 

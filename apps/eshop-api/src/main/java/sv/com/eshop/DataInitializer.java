@@ -17,23 +17,45 @@ public class DataInitializer {
     @Bean
     CommandLineRunner initDatabase(CatalogTypeRepository catalogTypeRepository, CatalogBrandRepository catalogBrandRepository, CatalogItemRepository catalogItemRepository) {
         return args -> {
-            var catalogType1 = CatalogType.create("SHOES");
-            var catalogType2 = CatalogType.create("ACCESSORIES");
+            var mug = CatalogType.create("Mug");
+            var sheet = CatalogType.create("Sheet");
+            var tShirt = CatalogType.create("T-Shirt");
+            var usbMemoryStick = CatalogType.create("USB Memory Stick");
 
-            catalogTypeRepository.save(catalogType1);
-            catalogTypeRepository.save(catalogType2);
+            catalogTypeRepository.save(mug);
+            catalogTypeRepository.save(sheet);
+            catalogTypeRepository.save(tShirt);
+            catalogTypeRepository.save(usbMemoryStick);
             
-            var catalogBrand1 = new CatalogBrand("ADIDAS");
-            var catalogBrand2 = new CatalogBrand("PUMA");
+            var dotnet = new CatalogBrand(".NET");
+            var azure = new CatalogBrand("Azure");
+            var other = new CatalogBrand("Other");
+            var sqlServer = new CatalogBrand("SQL Server");
+            var visualStudio = new CatalogBrand("Visual Studio");
 
-            catalogBrandRepository.save(catalogBrand1);
-            catalogBrandRepository.save(catalogBrand2);
+            catalogBrandRepository.save(dotnet);
+            catalogBrandRepository.save(azure);
+            catalogBrandRepository.save(other);
+            catalogBrandRepository.save(sqlServer);
+            catalogBrandRepository.save(visualStudio);
+            
+            var item1 = new CatalogItem(".NET Bot Black Sweatshirt", "description", BigDecimal.valueOf(19.50), "1.png", tShirt.getId(), dotnet.getId());
+            var item2 = new CatalogItem(".NET Black & White Mug", "description", BigDecimal.valueOf(8.50), "2.png", mug.getId(), dotnet.getId());
+            var item3 = new CatalogItem("Prism White T-Shirt", "description", BigDecimal.valueOf(12), "3.png", tShirt.getId(), other.getId());
+            var item4 = new CatalogItem(".NET Foundation Sweatshirt", "description", BigDecimal.valueOf(12), "4.png", tShirt.getId(), dotnet.getId());
+            var item5 = new CatalogItem("Roslyn Red Sheet", "description", BigDecimal.valueOf(8.5), "5.png", sheet.getId(), other.getId());
+            var item6 = new CatalogItem(".NET Blue Sweatshirt", "description", BigDecimal.valueOf(12), "6.png", tShirt.getId(), dotnet.getId());
+            var item7 = new CatalogItem("Roslyn Red T-Shirt", "description", BigDecimal.valueOf(12), "7.png", tShirt.getId(), other.getId());
+            var item8 = new CatalogItem("Kudu Purple Sweatshirt", "description", BigDecimal.valueOf(8.5), "8.png", tShirt.getId(), other.getId());
 
-            var catalogItem1 = new CatalogItem(".NET Bot Black Sweatshirt", "description", BigDecimal.valueOf(19.50), "1.png", null, null);
-            var catalogItem2 = new CatalogItem(".NET Black & White Mug", "description", BigDecimal.valueOf(8.50), "2.png", null, null);
-
-            catalogItemRepository.save(catalogItem1);
-            catalogItemRepository.save(catalogItem2);
+            catalogItemRepository.save(item1);
+            catalogItemRepository.save(item2);
+            catalogItemRepository.save(item3);
+            catalogItemRepository.save(item4);
+            catalogItemRepository.save(item5);
+            catalogItemRepository.save(item6);
+            catalogItemRepository.save(item7);
+            catalogItemRepository.save(item8);
 
             System.out.println("Database initilized successfully.");
         };

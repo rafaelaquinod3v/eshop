@@ -5,6 +5,8 @@ import java.util.Optional;
 
 public interface DomainRepository<T, ID> {
     List<T> findAll();
+    // Nueva consulta para paginación genérica
+    PagedResult<T> findAll(PageQuery pageQuery);
     Optional<T> findById(ID id);
     <S extends T> S save(S entity);    
     void delete(T entity);

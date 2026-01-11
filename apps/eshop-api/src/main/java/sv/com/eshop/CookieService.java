@@ -1,9 +1,6 @@
 package sv.com.eshop;
 
-import java.util.UUID;
-
 import org.springframework.stereotype.Service;
-
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 
