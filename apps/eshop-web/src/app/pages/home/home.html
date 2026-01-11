@@ -2,7 +2,7 @@
 <!-- Contenedor principal con Grid -->
 <div class="product-grid">
   <!-- Ejecutamos el signal con () para obtener el Array -->
-  @for (item of catalogItems(); track item.id) {
+  @for (item of items(); track item.id) {
     <div class="product-card">
       <img src="http://localhost:8080/api/{{ item.pictureUri }}" [alt]="item.name">
       <div class="card-content">
@@ -14,5 +14,21 @@
   } @empty {
     <p>No hay productos en el catálogo.</p>
   }
+
+    <!-- Contenedor de paginación envolvente -->
+  <div class="pagination-controls">
+    <button (click)="changePage(-1)" [disabled]="page() === FIRST_PAGE_INDEX()">
+      &laquo; Anterior
+    </button>
+
+    <div class="pagination-info">
+      Página <strong>{{ page() + 1 }}</strong> de {{ totalPages() }} 
+      <span class="total">(mostrando  {{ size() }} de {{ totalElements() }} ítems)</span>
+    </div>
+
+    <button (click)="changePage(+1)" [disabled]="page() === LAST_PAGE_INDEX()">
+      Siguiente &raquo;
+    </button>
+  </div>
 </div>
 
